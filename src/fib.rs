@@ -1,4 +1,3 @@
-
 pub fn fib(nth : i32) -> i32 {
     if nth < 1 {
         0
