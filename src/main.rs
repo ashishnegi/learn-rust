@@ -3,6 +3,7 @@ extern crate rand;
 mod fib;
 mod guess_game;
 mod area;
+mod maybe;
 
 fn main() {
     // guess number :
