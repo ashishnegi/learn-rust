@@ -6,6 +6,10 @@ enum TeaError {
     NoSomething,
 }
 
+fn append(s1: String, s2: String) -> String {
+    s1 + s2.as_str()
+}
+
 fn get_milk_from_cow(cow: bool) -> Result<String, TeaError> {
     if cow {
         Ok(String::from("get milk from cow"))
@@ -23,12 +27,11 @@ fn pour_milk(milk: bool) -> Result<String, TeaError> {
 }
 
 fn make_tea() -> Result<String, TeaError> {
-    let mut process = String::new();
-    let step_cow = get_milk_from_cow(true)?;
-    let step_milk = pour_milk(true)?;
-    process.push_str(step_cow.as_str());
-    process.push_str(step_milk.as_str());
-    Ok(process)
+    Ok(get_milk_from_cow(true)?
+       + &pour_milk(true)?
+       // + &pour_milk(true)?
+       // + &pour_milk(true)?
+    )
 }
 
 #[cfg(test)]
@@ -52,5 +55,11 @@ mod tests {
             Err(_) => assert!(false),
             Ok(_) => assert!(true)
         };
+    }
+
+    #[test]
+    fn append_str() {
+        let (s1, s2) = (String::from("ashish "), String::from("negi"));
+        assert_eq!(append(s1, s2), "ashish negi")
     }
 }
