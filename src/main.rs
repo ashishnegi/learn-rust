@@ -4,6 +4,7 @@ mod fib;
 mod guess_game;
 mod area;
 mod maybe;
+mod collection;
 
 fn main() {
     // guess number :
