@@ -6,6 +6,7 @@ mod area;
 mod maybe;
 mod collection;
 mod errors;
+mod traits;
 
 fn main() {
     // guess number :

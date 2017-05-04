@@ -1,9 +1,9 @@
 enum TeaError {
     NoMilk,
-    NoCup,
+    // NoCup,
     NoCow,
-    NoGas,
-    NoSomething,
+    // NoGas,
+    // NoSomething,
 }
 
 fn append(s1: String, s2: String) -> String {
