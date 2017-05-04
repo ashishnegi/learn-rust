@@ -5,6 +5,7 @@ mod guess_game;
 mod area;
 mod maybe;
 mod collection;
+mod errors;
 
 fn main() {
     // guess number :
