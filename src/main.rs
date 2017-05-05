@@ -8,6 +8,7 @@ mod collection;
 mod errors;
 mod traits;
 mod grep;
+mod closures;
 
 fn main() {
     // guess number :
