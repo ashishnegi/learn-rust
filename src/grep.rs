@@ -22,7 +22,7 @@ fn search_contents(contents: &str, search: &str) -> Vec<Res> {
     res
 }
 
-fn grep(filename: &str, search: &str) -> Result<Vec<Res>, Box<Error>> {
+fn grep(filename: &str, search: &str) -> Result<Vec<Res>, Error> {
     let mut file = File::open(filename)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
