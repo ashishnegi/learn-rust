@@ -2,12 +2,12 @@ use std::fs::File;
 use std::io::prelude::*;
 use std::io::Error;
 
-struct Res<'a> {
+struct Res {
     line_no: u32,
     line: String
 }
 
-fn search_contents<'a>(contents: &'a str, search: &str) -> Vec<Res<'a>> {
+fn search_contents(contents: &str, search: &str) -> Vec<Res> {
     let mut res = vec![];
     let mut line_no = 0;
     for line in contents.lines() {
@@ -15,14 +15,14 @@ fn search_contents<'a>(contents: &'a str, search: &str) -> Vec<Res<'a>> {
         if line.contains(search) {
             res.push(Res{
                 line_no: line_no,
-                line: line
+                line: String::from(line)
             });
         }
     }
     res
 }
 
-fn grep<'a>(filename: &str, search: &str) -> Result<Vec<Res<'a>>, Box<Error>> {
+fn grep(filename: &str, search: &str) -> Result<Vec<Res>, Box<Error>> {
     let mut file = File::open(filename)?;
     let mut contents = String::new();
     file.read_to_string(&mut contents)?;
@@ -37,8 +37,9 @@ mod tests {
     fn grep_1() {
         match grep("src/grep.rs", "use std::fs::") {
             Ok(res) => {
-                assert_eq!(2, res.len());
+                assert_eq!(3, res.len());
                 assert_eq!(1, res[0].line_no);
+                assert_eq!("use std::fs::File;", res[0].line);
             },
             _ => assert!(false)
         }
