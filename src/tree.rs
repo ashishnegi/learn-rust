@@ -8,7 +8,7 @@ struct Node {
     parent: RefCell<Weak<Node>>
 }
 
-fn makeTree() {
+fn make_tree() {
     let leaf = Rc::new(Node {
         val: 6,
         children: RefCell::new(vec![]),
@@ -52,7 +52,7 @@ mod tests {
 
     #[test]
     fn tree_test() {
-        makeTree();
+        make_tree();
     }
 }
 

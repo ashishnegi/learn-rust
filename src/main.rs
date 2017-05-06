@@ -10,6 +10,7 @@ mod traits;
 mod grep;
 mod closures;
 mod tree;
+mod threads;
 
 fn main() {
     // guess number :
