@@ -11,6 +11,7 @@ mod grep;
 mod closures;
 mod tree;
 mod threads;
+mod posts;
 
 fn main() {
     // guess number :
