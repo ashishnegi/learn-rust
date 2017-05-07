@@ -35,12 +35,24 @@ impl DraftPost {
     }
 }
 
+enum PublishResult {
+    PendingPost(PendingPost),
+    Post(Post)
+}
+
 impl PendingPost {
-    fn approve(self) -> Post {
-        Post { content: self.content }
+    fn approve(&mut self) {
+        self.approvals += 1;
     }
     fn reject(self) -> DraftPost {
         DraftPost { content: self.content }
+    }
+    fn publish(self) -> PublishResult {
+        if self.approvals > 1 {
+            PublishResult::Post(Post{content: self.content})
+        } else {
+            PublishResult::PendingPost(self)
+        }
     }
 }
 
@@ -52,9 +64,15 @@ mod tests {
     fn publish_workflow() {
         let mut draft = Post::new();
         draft.add_text("ashish first post");
-        let pending = draft.req_review();
-        let published = pending.approve();
-        assert_eq!(published.content(), "ashish first post");
+        let mut pending = draft.req_review();
+        pending.approve();
+        pending.approve();
+        let publish = pending.publish();
+        match publish {
+            PublishResult::Post(p) => assert_eq!(p.content(),
+                                                 "ashish first post"),
+            _ => assert!(false)
+        }
     }
 
     #[test]
@@ -64,8 +82,17 @@ mod tests {
         let pending = draft.req_review();
         let mut again_draft = pending.reject();
         again_draft.add_text(".. after first one..");
-        assert_eq!(again_draft.req_review().approve().content(),
-                   "ashish first post.. after first one..");
     }
 
+    #[test]
+    fn two_approvals_workflow() {
+        let mut draft = Post::new();
+        draft.add_text("ashish first post");
+        let mut pending = draft.req_review();
+        pending.approve();
+        match pending.publish() {
+            PublishResult::PendingPost(_) => assert!(true),
+            _ => assert!(false)
+        }
+    }
 }
