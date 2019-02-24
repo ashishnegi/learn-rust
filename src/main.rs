@@ -9,6 +9,7 @@ mod errors;
 mod traits;
 mod grep;
 mod closures;
+mod talk;
 mod tree;
 mod threads;
 mod posts;
