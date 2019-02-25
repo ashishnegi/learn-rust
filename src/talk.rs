@@ -1,3 +1,25 @@
+// Preface :
+// All kind of software has been designed in C.
+// All kind of software have been designed in OOPs,like C++, Java.
+// So, we have been successful in designing software with all kind of paradigms or language feature set that are provided in language.
+// Sum types is one such add on language feature mostly found in functional languages.
+
+// ----------- Next ------------
+// What is difference in Product types vs Sum types :
+
+// If we think how many different runtime values can be made.
+    // bool val ; // true or false : 2 values
+    // struct some_struct {
+    //     bool a, b;  // 2 x 2 kind values of some_struct are possible.
+    // }
+
+// This 2 x 2 leads to product types.
+
+    // struct some_struct_2 {  // => 2^33  values
+    //     Int a; // 2^32 values
+    //     Bool x ; // 2 values
+    // }
+
 // --------- First ------------
 // Here is an example of Sum Types.
 enum TrafficLight {
