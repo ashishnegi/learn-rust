@@ -4,4 +4,11 @@ version = "0.1.0"
 authors = ["Ashish Negi <ashishnegi33@gmail.com>"]
 
 [dependencies]
-rand = "0.3.14"
+rand = "0.7.3"
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "synchronization"
+harness = false
